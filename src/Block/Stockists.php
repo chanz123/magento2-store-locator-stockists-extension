@@ -104,6 +104,10 @@ class Stockists extends \Magento\Framework\View\Element\Template
      * @var string
      */
     const FILL_COLOR_CONFIG_PATH = 'limesharp_stockists/stockist_radius/circle_fill_color';
+    /**
+     * @var string
+     */
+    const CONTENT_URL_CONFIG_PATH = 'limesharp_stockists/stockist_content/url';
     
     /**
      * @var StockistsCollectionFactory
@@ -330,6 +334,10 @@ class Stockists extends \Magento\Framework\View\Element\Template
     public function getBaseImageUrl(): string
     {
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+    }
+    public function getContentUrl(): string
+    {
+        return $this->_scopeConfig->getValue(self::CONTENT_URL_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
     
 }
