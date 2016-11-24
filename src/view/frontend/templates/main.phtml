@@ -221,7 +221,8 @@ declare(strict_types=1);
 	            "fillOpacity" : <?php echo json_encode($block->getFillOpacitySettings()) ?>,
 	            "strokeColor" : "<?php echo $block->getStrokeColorSettings() ?>",
 	            "strokeOpacity" : <?php echo json_encode($block->getStrokeOpacitySettings()) ?>,
-	            "strokeWeight" : <?php echo json_encode($block->getStrokeWeightSettings()) ?>
+	            "strokeWeight" : <?php echo json_encode($block->getStrokeWeightSettings()) ?>,
+		    "contentUrl":"<?php echo $block->getContentUrl(); ?>"
             }
                 
         }
