@@ -47,7 +47,7 @@ define([
 	            
 	            // get the stores from admin stockists/ajax/stores
 	            function getStores() {
-	                var url = window.location.href.replace(/\/+$/, "") + '/ajax/stores';
+	                var url = window.location.protocol+"//"+window.location.host + "/stockists" + '/ajax/stores';
 	                $.ajax({
 	                    dataType: 'json',
 	                    url: url
