@@ -104,11 +104,13 @@ class Stockists extends \Magento\Framework\View\Element\Template
      * @var string
      */
     const FILL_COLOR_CONFIG_PATH = 'limesharp_stockists/stockist_radius/circle_fill_color';
+    
     /**
      * @var string
      */
     const CONTENT_URL_CONFIG_PATH = 'limesharp_stockists/stockist_content/url';
     
+
     /**
      * @var StockistsCollectionFactory
      */
@@ -135,7 +137,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
       *
       * @return CollectionFactory
       */
-    public function getStoresForFrontend(): Collection
+    public function getStoresForFrontend()
     {
         $collection = $this->stockistsCollectionFactory->create()
             ->addFieldToSelect('*')
@@ -150,7 +152,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return array
      */
-    public function getCountries(): array
+    public function getCountries()
     {
 
         $loadCountries = $this->countryHelper->toOptionArray();
@@ -171,7 +173,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */  
-    public function getMediaUrl(): string
+    public function getMediaUrl()
     {
 	    return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
     }
@@ -181,7 +183,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */   
-    public function getMapStyles(): string
+    public function getMapStyles()
     {
 	    return $this->_scopeConfig->getValue(self::MAP_STYLES_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -201,7 +203,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return int
      */   
-    public function getLocationSettings(): int
+    public function getLocationSettings()
     {
 	    return (int)$this->_scopeConfig->getValue(self::ASK_LOCATION_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -211,7 +213,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */   
-    public function getTemplateSettings(): string
+    public function getTemplateSettings()
     {
 	    return $this->_scopeConfig->getValue(self::TEMPLATE_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -221,7 +223,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */
-    public function getApiKeySettings(): string
+    public function getApiKeySettings()
     {
 	    return $this->_scopeConfig->getValue(self::API_KEY_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -231,7 +233,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */   
-    public function getUnitOfLengthSettings(): string
+    public function getUnitOfLengthSettings()
     {
 	    return $this->_scopeConfig->getValue(self::UNIT_LENGTH_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -241,7 +243,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return int
      */   
-    public function getZoomSettings(): int
+    public function getZoomSettings()
     {
 	    return (int)$this->_scopeConfig->getValue(self::ZOOM_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -251,7 +253,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return float
      */   
-    public function getLatitudeSettings(): float
+    public function getLatitudeSettings()
     {
 	    return (float)$this->_scopeConfig->getValue(self::LATITUDE_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -261,7 +263,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return float
      */   
-    public function getLongitudeSettings(): float
+    public function getLongitudeSettings()
     {
 	    return (float)$this->_scopeConfig->getValue(self::LONGITUDE_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -271,7 +273,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return float
      */   
-    public function getRadiusSettings(): float
+    public function getRadiusSettings()
     {
 	    return (float)$this->_scopeConfig->getValue(self::RADIUS_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -281,7 +283,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return float
      */   
-    public function getStrokeWeightSettings(): float
+    public function getStrokeWeightSettings()
     {
 	    return (float)$this->_scopeConfig->getValue(self::STROKE_WEIGHT_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -291,7 +293,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return float
      */   
-    public function getStrokeOpacitySettings(): float
+    public function getStrokeOpacitySettings()
     {
 	    return (float)$this->_scopeConfig->getValue(self::STROKE_OPACITY_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -301,7 +303,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */   
-    public function getStrokeColorSettings(): string
+    public function getStrokeColorSettings()
     {
 	    return $this->_scopeConfig->getValue(self::STROKE_COLOR_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -311,7 +313,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */   
-    public function getFillOpacitySettings(): float
+    public function getFillOpacitySettings()
     {
 	    return (float)$this->_scopeConfig->getValue(self::FILL_OPACITY_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -321,7 +323,7 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */   
-    public function getFillColorSettings(): string
+    public function getFillColorSettings()
     {
 	    return $this->_scopeConfig->getValue(self::FILL_COLOR_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
@@ -331,13 +333,16 @@ class Stockists extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */ 
-    public function getBaseImageUrl(): string
+    public function getBaseImageUrl()
     {
         return $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
     }
-    public function getContentUrl(): string
+
+    public function getContentUrl()
     {
         return $this->_scopeConfig->getValue(self::CONTENT_URL_CONFIG_PATH, ScopeInterface::SCOPE_STORE);
     }
+
+    
     
 }
