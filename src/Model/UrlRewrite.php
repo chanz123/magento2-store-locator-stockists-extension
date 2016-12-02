@@ -120,56 +120,49 @@ class UrlRewrite extends Value
      */
     public function afterSave()
     {
-
+		$om = \Magento\Framework\App\ObjectManager::getInstance();
 		$storeId = $this->storeManager->getStore()->getId();
-
-		if($this->hasDataChanges()){ //different from default
-			
-			$getCustomUrlRewrite = $this->_data["groups"]["stockist_content"]["fields"]["url"]["value"];
-						
-			foreach ($this->_data as $key => $value) {
-				
-				if($key == "field" && $value == "url"){
-					
-					$filterData = [
-		                UrlRewriteService::TARGET_PATH => "stockists",
-		                UrlRewriteService::STORE_ID => $storeId
-		            ];
-					
-					$rewriteFinder = $this->urlFinder->findOneByData($filterData);
-					
-					// if it was already set, just update it to the new one
-					if($rewriteFinder){
-						
-						if($getCustomUrlRewrite != "stockists"){
-
-							$this->urlRewrite->load($rewriteFinder->getUrlRewriteId())
-											->setRequestPath($getCustomUrlRewrite)
-											->save();
-											
-						} else {
-
-							$this->urlRewrite->load($rewriteFinder->getUrlRewriteId())->delete();
-							
-						}
-						
-					} else {
-						
-						if($getCustomUrlRewrite != "stockists"){
-							
-							$this->urlRewrite->setStoreId($storeId)
-							->setIdPath(rand(1, 100000))
-							->setRequestPath($getCustomUrlRewrite)
-							->setTargetPath("stockists")
-							->setIsSystem(0)
-							->save();
-							
+		if($this->hasDataChanges()){ //different from default			
+			$getCustomUrlRewrite = $this->_data["groups"]["stockist_content"]["fields"]["url"]["value"];						
+			foreach ($this->_data as $key => $value) {				
+				if($key == "field" && $value == "url"){					
+					foreach ($this->storeManager->getStores() as $store) 
+					{
+						$filterData = [
+			                UrlRewriteService::TARGET_PATH => "stockists",
+			                UrlRewriteService::STORE_ID => $store->getId()
+			            ];					
+						$rewriteFinder = $this->urlFinder->findOneByData($filterData);					
+						// if it was already set, just update it to the new one
+						if($rewriteFinder)
+						{		
+							if($getCustomUrlRewrite != "stockists"){
+								$context = $om->create('\Magento\UrlRewrite\Model\UrlRewrite');
+								$context->load($rewriteFinder->getUrlRewriteId())
+												->setRequestPath($getCustomUrlRewrite)
+												->save();												
+							} else {
+								$this->urlRewrite->load($rewriteFinder->getUrlRewriteId())->delete();								
+							}							
+						} 
+						else
+						{
+							$context = $om->create('\Magento\UrlRewrite\Model\UrlRewrite');						
+							if($getCustomUrlRewrite != "stockists")
+							{							
+								$context->setStoreId($store->getId())
+								->setEntityType('custom')
+								->setIdPath(rand(1, 100000))
+								->setRequestPath($getCustomUrlRewrite)
+								->setTargetPath("stockists")
+								->setIsSystem(0)
+								->save();								
+							}
 						}
 					}
 				}
 			}
-		}
-		
+		}		
         return parent::afterSave();
     }
     
