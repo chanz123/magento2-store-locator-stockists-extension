@@ -43,7 +43,7 @@
                     <label>Stockists meta keywords</label>
                 </field>
                 
-                <field id="url" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="url" type="text" sortOrder="50" showInDefault="1" showInWebsite="0" showInStore="0" canRestore="0">
                     <label>Stockists url</label>
                     <backend_model>Limesharp\Stockists\Model\UrlRewrite</backend_model>
                 </field>
