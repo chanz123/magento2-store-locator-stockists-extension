@@ -47,8 +47,9 @@ define([
 	            
 	            // get the stores from admin stockists/ajax/stores
 	            function getStores() {
-	                var url = window.location.protocol+"//"+window.location.host + "/stockists" + '/ajax/stores';
-	                $.ajax({
+	                // var url = window.location.protocol+"//"+window.location.host + "/stockists" + '/ajax/stores';
+	                var url = 'store-finder/ajax/stores';
+			$.ajax({
 	                    dataType: 'json',
 	                    url: url
 	                }).done(function(response) {
